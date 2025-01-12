@@ -1,45 +1,55 @@
-import java.util.List;
-import java.util.ArrayList;
+public class MataKuliah {
+    private String kode;
+    private String namaMatkul;
+    private int sks;
+    private Dosen dosenPengampu;
+    private int kuota;
+    private Jadwal jadwal;
 
-public class Mahasiswa extends SivitasAkademika {
-    private String nim;
-    private String prodi;
-    private List<MataKuliah> mataKuliahDiambil;
-    private ManajemenDataImpl manajemenData;
-
-    public Mahasiswa(String nama, String nim, String prodi) {
-        super(nama, nim);
-        this.nim = nim;
-        this.prodi = prodi;
-        this.mataKuliahDiambil = new ArrayList<>();
-        this.manajemenData = new ManajemenDataImpl(mataKuliahDiambil);
+    public MataKuliah(String kode, String namaMatkul, int sks, Dosen dosenPengampu, int kuota, Jadwal jadwal,  String hari, String jam) {
+        this.kode = kode;
+        this.namaMatkul = namaMatkul;
+        this.sks = sks;
+        this.dosenPengampu = dosenPengampu;
+        this.kuota = kuota;
+        this.jadwal = new Jadwal(hari, jam);
     }
 
-    public String getNim() {
-        return nim;
+
+    public Jadwal getJadwal() {
+        return jadwal;
     }
 
-    public void setNim(String nim) {
-        this.nim = nim;
+    public void setJadwal(Jadwal jadwal) {
+        this.jadwal = jadwal;
+    }
+    public String getNamaMatkul() {
+        return namaMatkul;
+    }
+
+    public void setNamaMatkul(String namaMatkul) {
+        this.namaMatkul = namaMatkul;
+    }
+
+    public int getKuota() {
+        return kuota;
+    }
+
+    public void setKuota(int kuota) {
+        this.kuota = kuota;
+    }
+
+    public void decrementKuota() {
+        if (kuota > 0) kuota--;
+    }
+
+    public void incrementKuota() {
+        kuota++;
     }
 
     public void tampilkanData() {
-        System.out.println("Nama Mahasiswa: " + nama + ", NIM: " + nim + ", Program Studi: " + prodi);
-        System.out.println("Mata Kuliah yang Diambil: ");
-        for (MataKuliah matkul : mataKuliahDiambil) {
-            System.out.println("- " + matkul.getNamaMatkul());
-        }
-    }
-
-    public void daftarMataKuliah(MataKuliah mataKuliah) {
-        manajemenData.daftarMataKuliah(mataKuliah); // Panggil metode dari ManajemenDataImpl
-    }
-
-    public void batalMataKuliah(MataKuliah mataKuliah) {
-        manajemenData.batalMataKuliah(mataKuliah); // Panggil metode dari ManajemenDataImpl
-    }
-
-    public List<MataKuliah> getMataKuliahDiambil() {
-        return mataKuliahDiambil;
+        System.out.println("Kode: " + kode + ", Nama Mata Kuliah: " + namaMatkul + ", SKS: " + sks);
+        System.out.println("Dosen Pengampu: " + dosenPengampu.getNama() + ", Kuota: " + kuota);
+        jadwal.tampilkanJadwal();
     }
 }
