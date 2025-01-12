@@ -2,7 +2,7 @@ public class Jadwal {
     private String hari;
     private String jam;
 
-    // construk
+
     public Jadwal(String hari, String jam) {
         this.hari = hari;
         this.jam = jam;
