@@ -6,14 +6,15 @@ public class MataKuliah {
     private int kuota;
     private Jadwal jadwal;
 
-    public MataKuliah(String kode, String namaMatkul, int sks, Dosen dosenPengampu, int kuota, Jadwal jadwal) {
+    public MataKuliah(String kode, String namaMatkul, int sks, Dosen dosenPengampu, int kuota, Jadwal jadwal,  String hari, String jam) {
         this.kode = kode;
         this.namaMatkul = namaMatkul;
         this.sks = sks;
         this.dosenPengampu = dosenPengampu;
         this.kuota = kuota;
-        this.jadwal = jadwal;
+        this.jadwal = new Jadwal(hari, jam);
     }
+
 
     public Jadwal getJadwal() {
         return jadwal;
