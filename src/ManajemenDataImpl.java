@@ -1,14 +1,12 @@
 import java.util.List;
 
 public class ManajemenDataImpl implements ManajemenData {
-
     private List<MataKuliah> mataKuliahDiambil;
 
     public ManajemenDataImpl(List<MataKuliah> mataKuliahDiambil) {
         this.mataKuliahDiambil = mataKuliahDiambil;
     }
 
-    // output daftar berhasil dan bentrok
     @Override
     public void daftarMataKuliah(MataKuliah mataKuliah) {
         if (isJadwalBentrokan(mataKuliah)) {

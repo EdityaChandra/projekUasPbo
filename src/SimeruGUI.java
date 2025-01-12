@@ -6,17 +6,15 @@ import java.awt.event.ActionListener;
 public class SimeruGUI extends JFrame {
     private Simeru simeru;
 
-    public SimeruGUI() {
-        simeru = new Simeru();
+    public SimeruGUI(Simeru simeru) {
+        this.simeru = simeru;
         setTitle("Simeru Management System");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(7, 1));
-
 
         JButton btnTambahMahasiswa = new JButton("Tambah Mahasiswa");
         JButton btnTambahDosen = new JButton("Tambah Dosen");
@@ -25,7 +23,6 @@ public class SimeruGUI extends JFrame {
         JButton btnBatalkanMataKuliah = new JButton("Batalkan Mata Kuliah");
         JButton btnTampilkanSemuaData = new JButton("Tampilkan Semua Data");
         JButton btnKeluar = new JButton("Keluar");
-
 
         btnTambahMahasiswa.addActionListener(new ActionListener() {
             @Override
@@ -76,7 +73,6 @@ public class SimeruGUI extends JFrame {
             }
         });
 
-        // Add buttons to panel
         panel.add(btnTambahMahasiswa);
         panel.add(btnTambahDosen);
         panel.add(btnTambahMataKuliah);
@@ -85,17 +81,18 @@ public class SimeruGUI extends JFrame {
         panel.add(btnTampilkanSemuaData);
         panel.add(btnKeluar);
 
-        // Add panel to frame
         add(panel);
     }
 
     private void tambahMahasiswa() {
         String nama = JOptionPane.showInputDialog(this, "Nama Mahasiswa:");
         String nim = JOptionPane.showInputDialog(this, "NIM Mahasiswa:");
-        String prodi = JOptionPane.showInputDialog(this, "Program Studi:");
+        String namaProdi = JOptionPane.showInputDialog(this, "Program Studi:");
+        Prodi prodi = new Prodi(namaProdi);
         Mahasiswa mahasiswa = new Mahasiswa(nama, nim, prodi);
         simeru.tambahMahasiswa(mahasiswa);
     }
+
 
     private void tambahDosen() {
         String nama = JOptionPane.showInputDialog(this, "Nama Dosen:");
@@ -119,7 +116,8 @@ public class SimeruGUI extends JFrame {
         String jam = JOptionPane.showInputDialog(this, "Jam Mata Kuliah:");
 
         Jadwal jadwal = new Jadwal(hari, jam);
-        MataKuliah mataKuliah = new MataKuliah(kode, namaMatkul, sks, dosen, 30, jadwal);
+        MataKuliah mataKuliah = new MataKuliah(kode, namaMatkul, sks, dosen, 30, jadwal, hari, jam);
+
         dosen.tambahMataKuliah(mataKuliah);
     }
 
@@ -157,7 +155,8 @@ public class SimeruGUI extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new SimeruGUI().setVisible(true);
+                Simeru simeru = new Simeru();
+                new SimeruGUI(simeru).setVisible(true);
             }
         });
     }
