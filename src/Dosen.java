@@ -23,6 +23,12 @@ public class Dosen extends SivitasAkademika {
         mataKuliah.add(matkul);
     }
 
+
+    public void tambahMataKuliah(String kode, String namaMatkul, int sks, Dosen dosenPengampu, int kuota, Jadwal jadwal, String hari, String jam) {
+        MataKuliah matkul = new MataKuliah(kode, namaMatkul, sks, dosenPengampu, kuota, jadwal, hari, jam);
+        mataKuliah.add(matkul);
+    }
+
     public void tampilkanData() {
         System.out.println("Nama Dosen: " + nama + ", NIDN: " + nidn);
         System.out.println("Mata Kuliah yang Diajarkan: ");
