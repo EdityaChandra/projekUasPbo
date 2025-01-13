@@ -5,12 +5,9 @@ public class Simeru {
     private List<Prodi> prodiList;
     private List<Mahasiswa> mahasiswaList;
     private List<Dosen> dosenList;
+    private ManajemenData manajemenData;
 
-    public Simeru() {
-        prodiList = new ArrayList<>();
-        mahasiswaList = new ArrayList<>();
-        dosenList = new ArrayList<>();
-    }
+
 
     public void tambahProdi(Prodi prodi) {
         prodiList.add(prodi);
@@ -41,6 +38,20 @@ public class Simeru {
         }
     }
 
+
+    public void daftarMataKuliah(MataKuliah mataKuliah) {
+        manajemenData.daftarMataKuliah(mataKuliah);
+    }
+
+    public void batalMataKuliah(MataKuliah mataKuliah) {
+        manajemenData.batalMataKuliah(mataKuliah);
+    }
+
+    public boolean cekJadwalBentrokan(MataKuliah mataKuliah) {
+        return manajemenData.isJadwalBentrokan(mataKuliah);
+    }
+
+
     public List<Mahasiswa> getMahasiswaList() {
         return mahasiswaList;
     }
@@ -60,6 +71,4 @@ public class Simeru {
     public List<MataKuliah> getMataKuliahListFromDosen(Dosen dosen) {
         return dosen.getMataKuliah();
     }
-
-
 }
